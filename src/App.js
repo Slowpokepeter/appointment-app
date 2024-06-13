@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Search from "./components/Search"
+import { BiCalendar } from "react-icons/bi";
+import AddAppointment from "./components/AddAppointment"
+import appoitmentList from "./data.json"
+import AppointmentInfo from "./components/AppoitmentInfo";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div className="App container mx-auto mt-3 font-thin">
+      <h1 className="text-5xl mb-3">
+        <BiCalendar className="inline-block text-red-400 align-top" />
+        Your Appoitments
+      </h1>
+      <AddAppointment/>
+      <Search />
+
+      <ul className="divide-y divide-gray-200">
+        {appoitmentList
+          .map(appoitment => (
+          <AppointmentInfo key={appoitment.id}
+            appoitment={appoitment}
+          />
+        ))
+        }
+
+      </ul>
+    </div> 
   );
 }
 
