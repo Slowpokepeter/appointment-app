@@ -1,5 +1,6 @@
 import {BiSearch, BiCaretDown, BiCheck } from "react-icons/bi"
 import { useState } from "react"
+import { query } from "express"
 
 const DropDown = ({ toggle }) => {
   if (!toggle) {
@@ -29,7 +30,7 @@ const DropDown = ({ toggle }) => {
   )
 }
 
-const Search = () => {
+const Search = ({query, onQueryChange}) => {
   let [toggleSort, setToggleSort] = useState(false)
   return (
       <div className="py-5">
@@ -38,7 +39,8 @@ const Search = () => {
                   <BiSearch />
                   <label htmlFor="query" className="sr-only" />
               </div>
-              <input type="text" name="query" id="query" value=""
+              <input type="text" name="query" id="query" value={query}
+                  onChange={(event) => {onQueryChange(event.target.value)}}
                   className="pl-8 h-12 rounded-md focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm shadow-md border border-solid border-slate-200" placeholder="Search" />
               <div className="absolute inset-y-0 right-0 flex items-center">
                   <div>
